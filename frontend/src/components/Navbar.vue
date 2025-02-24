@@ -10,6 +10,7 @@
       <!-- Desktop Navigation -->
       <div class="d-none d-md-flex ">
         <v-btn variant="text" class="text-white mr-5" to="/projects">Projects</v-btn>
+        <v-btn variant="text" class="text-white mr-5" to="/about">About us</v-btn>
       </div>
   
       <!-- Mobile Menu Button -->
@@ -22,6 +23,9 @@
         <v-list>
           <v-list-item to="/projects" @click="drawer = false">
             <v-list-item-title>Projects</v-list-item-title>
+          </v-list-item>
+          <v-list-item to="/about" @click="drawer = false">
+            <v-list-item-title>About</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-navigation-drawer>

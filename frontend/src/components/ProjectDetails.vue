@@ -7,7 +7,7 @@
       <v-col class="justify-end d-flex">
         <Button
           icon="mdi-plus"
-          height="40"
+          height="45"
           @click="addProject"
           :noSpacing="false"
           >Create Projects</Button
