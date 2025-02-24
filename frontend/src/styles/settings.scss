@@ -1,0 +1,29 @@
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// https://vuetifyjs.com/features/sass-variables/`
+// @use 'vuetify/settings' with (
+//   $color-pack: false
+// );
+
+
+.main-font{
+    font-family: "Poppins", serif;
+    font-weight: 200;
+    font-style: normal;
+}
+.main-font-semibold{
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+.normal-text{
+    text-transform: none;
+}
+.text-black{
+    color: #212121!important;
+}  
+
