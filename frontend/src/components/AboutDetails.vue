@@ -54,5 +54,7 @@ const aboutItems = ref({
 });
 </script>
 <style scoped>
-
+.about-page{
+  margin-top: 5rem;
+}
 </style>

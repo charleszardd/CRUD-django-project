@@ -1,63 +1,59 @@
 <template>
-  <v-container fluid class="px-10 main-font">
-    <v-row class="d-flex mt-5" align="center">
-      <v-col>
-        <h1 class="text-black">Projects</h1>
-      </v-col>
-      <v-col class="justify-end d-flex">
-        <Button
-          icon="mdi-plus"
-          height="45"
-          @click="addProject"
-          :noSpacing="false"
-          >Create Projects</Button
-        >
-        <Modal
-          v-model:show="showModal"
-          :project="selectedProject"
-          :isEdit="isEditing"
-          title="Manage Project"
-          @submit="handleSubmit"
-        />
-      </v-col>
-    </v-row>
+  <v-container fluid class="px-10 main-font mt-10">
 
-    <v-row>
-      <v-col v-for="project in projects" :key="project.id" cols="12" md="4">
-        <v-card max-height="700" height="480" class="card mt-5 rounded-lg" elevation="10">
-          <v-img :src="getImageUrl(project.image)" cover height="200"></v-img>
-          <v-card-title class="text-h6">{{ project.name }}</v-card-title>
-          <v-card-text class="text-grey-darken-2">{{
-            project.description
-          }}</v-card-text>
-          <v-card-actions class="pl-4">
-            <v-btn
-              v-if="project.link"
-              :href="project.link"
-              target="_blank"
-              variant="outlined"
-              color="primary"
-              class="normal-text"
-            >
-              <v-icon class="mr-2" left>mdi-web</v-icon>
-              Visit Project
-            </v-btn>
-          </v-card-actions>
+    <div v-if="isLoading" class="loader-overlay">
+      <Loader />
+    </div>
 
-          <v-card-actions class="action-items">
-            <v-btn
-              icon="mdi-pencil-outline"
-              @click="editProject(project)"
-            ></v-btn>
-            <v-btn
-              color="red"
-              icon="mdi-delete-outline"
-              @click="deleteProject(project.id)"
-            ></v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
+    <div v-else>
+      <v-row class="d-flex mt-5" align="center">
+        <v-col>
+          <span class="text-black text-h5 main-font-semibold mr-2">Projects 🚀</span>
+        </v-col>
+        <v-col class="justify-end d-flex">
+          <Button elevation="10" icon="mdi-plus" height="45" @click="addProject" :noSpacing="false">
+            Create Projects
+          </Button>
+          <Modal
+            v-model:show="showModal"
+            :project="selectedProject"
+            :isEdit="isEditing"
+            title="Add Project"
+            @submit="handleSubmit"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col v-for="project in projects" :key="project.id" cols="12" md="4">
+          <v-card max-height="700" height="480" class="card mt-5 rounded-lg" elevation="10">
+            <v-img :src="getImageUrl(project.image)" cover height="200"></v-img>
+            <v-card-title class="text-h6">{{ project.name }}</v-card-title>
+            <v-card-text class="text-grey-darken-2">
+              {{ project.description }}
+            </v-card-text>
+            <v-card-actions class="pl-4">
+              <v-btn
+                v-if="project.link"
+                :href="project.link"
+                target="_blank"
+                variant="outlined"
+                color="primary"
+                class="normal-text"
+              >
+                <v-icon class="mr-2" left>mdi-web</v-icon>
+                Visit Project
+              </v-btn>
+            </v-card-actions>
+
+            <v-card-actions class="action-items">
+              <v-btn color="grey" icon="mdi-pencil-outline" @click="editProject(project)"></v-btn>
+              <v-btn color="grey" icon="mdi-delete-outline" @click="deleteProject(project.id)"></v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -66,6 +62,7 @@ import { ref, onMounted } from "vue";
 import axios from "axios";
 import Modal from "./Modal.vue";
 
+const isLoading = ref(true);
 const showModal = ref(false);
 const projects = ref([]);
 const selectedProject = ref(null);
@@ -143,8 +140,25 @@ const fetchProjects = async () => {
 };
 
 onMounted(fetchProjects);
+
+onMounted(() => {
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 1500);
+});
 </script>
 <style scoped>
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 .card {
   position: relative;
 }
@@ -153,4 +167,5 @@ onMounted(fetchProjects);
   bottom: 0;
   right: 0;
 }
+
 </style>

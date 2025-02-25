@@ -1,17 +1,16 @@
 <template>
   <v-app class="main-bg">
-    <Navbar />
-    <router-view />
+    
+    <v-main class="content">
+      <router-view />
+    </v-main>
   </v-app>
 </template>
 
-<script setup>
-  //
-</script>
 <style scoped>
 .main-bg {
-  background-color: #e2dfdf;
   padding: 0;
   margin: 0;
 }
+
 </style>
