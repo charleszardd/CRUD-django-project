@@ -5,7 +5,7 @@
       class="logo cursor-pointer text-white font-weight-bold main-font"
       style="text-decoration: none"
     >
-      <strong>Portfolio 🔥</strong>
+      <strong>Project Maker 🔥</strong>
     </router-link>
 
     <v-spacer></v-spacer>
@@ -14,7 +14,7 @@
       <v-btn variant="text" class="text-white mr-5" to="/projects"
         >Projects</v-btn
       >
-      <v-btn variant="text" class="text-white mr-5" to="/about">About us</v-btn>
+      <v-btn variant="text" class="text-white mr-5" to="/about"><v-icon class="text-h5">mdi-account-outline</v-icon></v-btn>
     </div>
 
     <v-btn icon class="d-md-none" @click="drawer = !drawer">
